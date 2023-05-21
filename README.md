@@ -47,9 +47,7 @@ If you receive **Join Ack** from server, that infromation will include game serv
 - **outSenderInfo**: If successful, return sender info want to participate.
 - **return:** JOIN_REQ_RECV_RESULT
 
-**JOIN_ACK_SEND_RESULT SendJoinAck(**
-
-**const JoinRequesterInfo& inDestInfo, const FString& inGameServerIP);**
+**JOIN_ACK_SEND_RESULT SendJoinAck(const JoinRequesterInfo& inDestInfo, const FString& inGameServerIP);**
 
 - **inDestInfo:** Client’s info to send **Join Ack**
 - **inGameServerIP:** game server address to enter
@@ -78,9 +76,7 @@ If you receive **Join Ack** from server, that infromation will include game serv
 
 - Close current Socket
 
-**JOIN_REQ_SEND_RESULT SendJoinReq(**
-
-**const TCHAR* ServerID, int32 ServerPortNo, bool bIsBroadcast, FString TargetIPAddr);**
+**JOIN_REQ_SEND_RESULT SendJoinReq(const TCHAR* ServerID, int32 ServerPortNo, bool bIsBroadcast, FString TargetIPAddr);**
 
 - send socket requesting to join server. (Default action is broadcast)
 - **ServerID:** ServerID of Matching server.
@@ -88,7 +84,7 @@ If you receive **Join Ack** from server, that infromation will include game serv
 - **bIsBroadcast:** If true, broadcast request. In false, send join request to TargetIPAddr
 - **TargetIPAddr:** IP Addr to send Join request. bIsBroadcast must be false. Not include Port No.
 
-**JOIN_ACK_RECV_RESULT TryRecvJoinAck(FString&** outGameServerAddr**);**
+**JOIN_ACK_RECV_RESULT TryRecvJoinAck(FString& outGameServerAddr);**
 
 - **outString**: If successful, return Game ServerAddr.
 - **return:** JOIN_REQ_RECV_RESULT
