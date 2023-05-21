@@ -58,15 +58,19 @@ public:
 	inline int8 GetbIsClientHosting() const { return bIsClientHosting; }
 	
 	/**
-	 * Broadcast socket requesting to join server.
-	 * @param ServerID	ServerID want to join.
+	 * send socket requesting to join server. (Default action is broadcast)
+	 * @param ServerID		ServerID of Matching server. 
 	 * @param ServerPortNo	Session server port number. (Default is DEFAULT_SERVER_PORT_NO) 
-	 * @param ServerPortNo	Session server IP. (Default is DEFAULT_SERVER_PORT_NO) 
+	 * @param bIsBroadcast	If true, broadcast request. In false, send join request to TargetIPAddr
+	 * @param TargetIPAddr	IP Addr to send Join request. bIsBroadcast must be false. Not include Port No.
 	 */
 	JOIN_REQ_SEND_RESULT SendJoinReq(const TCHAR* ServerID, int32 ServerPortNo = DEFAULT_SERVER_PORT_NO
-	                                , bool bIsBroadcast = true, FString IPAddr = TEXT(""));
+	                                , bool bIsBroadcast = true, FString TargetIPAddr = TEXT(""));
 
-	JOIN_ACK_RECV_RESULT TryRecvJoinAck(FString& outString);
+	/**
+	 * @param outGameServerAddr	If successful, return Game ServerAddr.
+	 */
+	JOIN_ACK_RECV_RESULT TryRecvJoinAck(FString& outGameServerAddr);
 	
 private:
 	

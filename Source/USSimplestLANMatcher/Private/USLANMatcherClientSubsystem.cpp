@@ -96,7 +96,7 @@ void UUSLANMatcherClientSubsystem::CloseClientSocket()
 }
 
 JOIN_REQ_SEND_RESULT UUSLANMatcherClientSubsystem::SendJoinReq(const TCHAR* ServerID, int32 ServerPortNo,
-					bool bIsBroadcast, FString IPAddr)
+					bool bIsBroadcast, FString TargetIPAddr)
 {
 	if(!bIsClientHosting)
 	{
@@ -117,7 +117,7 @@ JOIN_REQ_SEND_RESULT UUSLANMatcherClientSubsystem::SendJoinReq(const TCHAR* Serv
 	else
 	{
 		bool IsIPValid = true;
-		JoinReqAddr->SetIp(*IPAddr, IsIPValid);
+		JoinReqAddr->SetIp(*TargetIPAddr, IsIPValid);
 		if(!IsIPValid) return JOIN_REQ_SEND_RESULT::INVALID_IP;
 	}
 	
@@ -138,7 +138,7 @@ JOIN_REQ_SEND_RESULT UUSLANMatcherClientSubsystem::SendJoinReq(const TCHAR* Serv
 }
 
 
-JOIN_ACK_RECV_RESULT UUSLANMatcherClientSubsystem::TryRecvJoinAck(FString& outString)
+JOIN_ACK_RECV_RESULT UUSLANMatcherClientSubsystem::TryRecvJoinAck(FString& outGameServerAddr)
 {
 	if(!bIsClientHosting)
 	{
@@ -172,7 +172,7 @@ JOIN_ACK_RECV_RESULT UUSLANMatcherClientSubsystem::TryRecvJoinAck(FString& outSt
 
 		// 자기자신의 패킷을 받았을 때 처리도 해주기
 
-		outString = RecvedPacket.GameServerIPName;
+		outGameServerAddr = RecvedPacket.GameServerIPName;
 		return JOIN_ACK_RECV_RESULT::SUCCEDED;
 		
 	}
