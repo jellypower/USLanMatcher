@@ -21,6 +21,13 @@ void UUSLANMatcherHostServerSubsystem::Initialize(FSubsystemCollectionBase& Coll
 	UE_LOG(LogUSLanMatcher, Log, TEXT("USLanMatcher Server Subsystem Ready!"));
 }
 
+void UUSLANMatcherHostServerSubsystem::Deinitialize()
+{
+	Super::Deinitialize();
+	if(GetbIsServerHosting())
+		CloseServer();
+}
+
 
 SOCKET_CONSTRUCT_RESULT UUSLANMatcherHostServerSubsystem::HostServer(int32 DesiredPortNo)
 {

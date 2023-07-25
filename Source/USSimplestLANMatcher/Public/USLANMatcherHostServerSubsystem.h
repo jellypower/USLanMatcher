@@ -44,7 +44,9 @@ class USSIMPLESTLANMATCHER_API UUSLANMatcherHostServerSubsystem : public UGameIn
 
 public:
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
+	virtual void Deinitialize() override;
 
+	
 	/**
 	 * Host socket to receive response from server.
 	 * @param DesiredPortNo	Default value is DEFAULT_SERVER_PORT_NO
