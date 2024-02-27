@@ -76,7 +76,7 @@ If you receive **Join Ack** from server, that infromation will include game serv
 
 - Close current Socket
 
-**JOIN_REQ_SEND_RESULT SendJoinReq(const TCHAR* ServerID, int32 ServerPortNo, bool bIsBroadcast, FString TargetIPAddr);**
+***JOIN_REQ_SEND_RESULT SendJoinReq(const TCHAR* ServerID, int32 ServerPortNo, bool bIsBroadcast, FString TargetIPAddr);**
 
 - send socket requesting to join server. (Default action is broadcast)
 - **ServerID:** ServerID of Matching server.
